@@ -13,7 +13,7 @@ const config = (await messenger.storage.local.get('paperless')).paperless;
 
 
 setupButton.onclick = async () => {
-    const tab = await messenger.tabs.create({
+    await messenger.tabs.create({
         url: 'settings.html'
     });
 };
@@ -30,14 +30,11 @@ if (config?.token && config?.host) {
 
     try {
         for (let file of attachmentFiles) {
-            var data = new FormData()
+            const data = new FormData()
             data.append('document', file);
             data.append('title', file.name);
             const headers = new Headers();
             headers.set('Authorization', `Token ${config?.token}`);
-            console.dir(data);
-            console.dir(headers);
-
 
             const result = await fetch(`${config?.host}/api/documents/post_document/`, {
                 method: 'POST',
@@ -45,13 +42,9 @@ if (config?.token && config?.host) {
                 body: data
             });
             const taskId = await result.text();
-
-            console.log(taskId);
-
         }
     } catch (e) {
         msgText.innerText = e;
-
     }
 
 
