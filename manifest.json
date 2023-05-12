@@ -1,0 +1,32 @@
+{
+  "manifest_version": 2,
+  "name": "send-to-paperless",
+  "description": "Send Attachments to paperless-ngx",
+  "version": "1.0",
+  "author": "Niach",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "paperless@niach",
+      "strict_min_version": "78.0"
+    }
+  },
+  "permissions": [
+    "messagesRead",
+    "storage",
+    "menus",
+    "<all_urls>"
+  ],
+ "background": {
+    "scripts": [
+      "background.js"
+    ]
+  },
+  "message_display_action": {
+    "default_popup": "popup.html",
+    "default_title": "Send to paperless",
+    "default_icon": "paperless.svg"
+  },
+  "icons": {
+    "64": "paperless.svg"
+  }
+}
